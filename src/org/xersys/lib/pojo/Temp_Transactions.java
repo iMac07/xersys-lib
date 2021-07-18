@@ -1,4 +1,4 @@
-package org.xersys.lib.dto;
+package org.xersys.lib.pojo;
 
 import java.util.Date;
 import java.util.LinkedList;
