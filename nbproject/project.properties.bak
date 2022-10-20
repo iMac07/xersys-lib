@@ -33,11 +33,23 @@ dist.jar=${dist.dir}/xersys-lib.jar
 dist.javadoc.dir=${dist.dir}/javadoc
 endorsed.classpath=
 excludes=
-file.reference.json-simple-1.1.1.jar=F:\\xurpas\\lib\\json-simple-1.1.1.jar
+file.reference.bcprov-jdk16-145.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\bcprov-jdk16-145.jar
+file.reference.commons-codec-1.11.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\commons-codec-1.11.jar
+file.reference.commons-collections-3.2.2.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\commons-collections-3.2.2.jar
+file.reference.javax.mail.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\javax.mail.jar
+file.reference.json-simple-1.1.1.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\json-simple-1.1.1.jar
+file.reference.mysql-connector-java-5.1.49.jar=D:\\MTC Files\\Programs\\Java\\icarus\\lib\\mysql-connector-java-5.1.49.jar
 includes=**
 jar.compress=false
 javac.classpath=\
-    ${file.reference.json-simple-1.1.1.jar}
+    ${file.reference.json-simple-1.1.1.jar}:\
+    ${file.reference.javax.mail.jar}:\
+    ${reference.commander.jar}:\
+    ${file.reference.bcprov-jdk16-145.jar}:\
+    ${file.reference.commons-codec-1.11.jar}:\
+    ${file.reference.commons-collections-3.2.2.jar}:\
+    ${file.reference.json-simple-1.1.1.jar}:\
+    ${file.reference.mysql-connector-java-5.1.49.jar}
 # Space-separated list of extra javac options
 javac.compilerargs=
 javac.deprecation=false
@@ -58,6 +70,7 @@ javac.test.processorpath=\
 javadoc.additionalparam=
 javadoc.author=false
 javadoc.encoding=${source.encoding}
+javadoc.html5=false
 javadoc.noindex=false
 javadoc.nonavbar=false
 javadoc.notree=false
@@ -66,9 +79,13 @@ javadoc.splitindex=true
 javadoc.use=true
 javadoc.version=false
 javadoc.windowtitle=
+jlink.launcher=false
+jlink.launcher.name=xersys-lib
 meta.inf.dir=${src.dir}/META-INF
 mkdist.disabled=true
 platform.active=default_platform
+project.commander=../commander
+reference.commander.jar=${project.commander}/dist/commander.jar
 run.classpath=\
     ${javac.classpath}:\
     ${build.classes.dir}
