@@ -87,18 +87,20 @@ public class SMTPSender {
     private boolean loadConfig(){
         try {
             Properties loProps = new Properties();
-            loProps.load(new FileInputStream(System.getProperty("sys.default.path.config") + "app-config.properties"));
+            loProps.load(new FileInputStream(System.getProperty("sys.default.path.config") + "smtp-config.properties"));
             
             _email = loProps.getProperty("mail.user");
             _password = loProps.getProperty("mail.password");
             
             _property.put("mail.smtp.host", loProps.getProperty("mail.smtp.host"));
-            _property.put("mail.smtp.auth", "true");
-            _property.put("mail.debug", "false");
             _property.put("mail.smtp.port", loProps.getProperty("mail.smtp.port"));
-            _property.put("mail.smtp.socketFactory.port", loProps.getProperty("mail.smtp.port"));
-            _property.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            _property.put("mail.smtp.socketFactory.fallback", "false");
+            _property.put("mail.smtp.auth", loProps.getProperty("mail.smtp.auth"));
+            _property.put("mail.smtp.starttls.enable", loProps.getProperty("mail.smtp.starttls.enable"));
+            
+//            _property.put("mail.debug", "false");
+//            _property.put("mail.smtp.socketFactory.port", loProps.getProperty("mail.smtp.port"));
+//            _property.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//            _property.put("mail.smtp.socketFactory.fallback", "false");
                         
             return true;
         } catch (FileNotFoundException ex) {
@@ -191,9 +193,11 @@ public class SMTPSender {
             
             Transport.send(message);
         } catch (AddressException ex) {
+            _message = ex.getMessage();
             ex.printStackTrace();
             return false;
         } catch (MessagingException ex) {
+            _message = ex.getMessage();
             ex.printStackTrace();
             return false;
         }
